@@ -22,8 +22,13 @@ import java.util.Set;
 @Table(name = "student")
 public class StudentEntity {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Setter(AccessLevel.NONE)
+    private Long id;
+
     @NotEmpty(message = "First Name is required field")
-    @Column(name = "first_name", unique = true)
+    @Column(name = "first_name")
     String firstName;
 
     @Column(name = "last_name")
@@ -31,14 +36,14 @@ public class StudentEntity {
 
     @Email(message = "Email is not valid", regexp = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$")
     @NotEmpty(message = "Email is required")
-    @Column(name = "email", unique = true)
+    @Column(name = "email")
     String email;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Setter(AccessLevel.NONE)
-    private Long id;
+    /*
+        @ElementCollection: The Data for the collection stored in a separate table.
+        @CollectionTable: Here refer the table name and provide the join column attribute
 
+     */
     @ElementCollection
     @CollectionTable(
             name = "image",
@@ -46,6 +51,9 @@ public class StudentEntity {
     )
     @Column(name = "file_name")
     private Set<String> images = new HashSet<String>();
+
+    @Embedded // This annotation is optional even if we don't give it will be there for @Embeddable objects
+    private AddressEntity homeAddress;
 
 }
 

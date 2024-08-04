@@ -9,9 +9,6 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.method.annotation.HandlerMethodValidationException;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @ControllerAdvice
 public class StudentException extends ResponseEntityExceptionHandler {
     @Override
