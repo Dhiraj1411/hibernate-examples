@@ -1,6 +1,8 @@
 package com.advanced.hibernate;
 
 import com.advanced.hibernate.entity.*;
+import com.advanced.hibernate.repository.ElectricianRepo;
+import com.advanced.hibernate.repository.PlumberRepo;
 import com.advanced.hibernate.repository.StudentRepo;
 import com.advanced.hibernate.repository.UserRepo;
 import jakarta.annotation.PostConstruct;
@@ -15,11 +17,15 @@ public class HibernateApplication {
 
     StudentRepo studentRepo;
     UserRepo userRepo;
+    PlumberRepo plumberRepo;
+    ElectricianRepo electricianRepo;
 
     @Autowired
-    public HibernateApplication(StudentRepo studentRepo, UserRepo userRepo) {
+    public HibernateApplication(StudentRepo studentRepo, UserRepo userRepo, PlumberRepo plumberRepo, ElectricianRepo electricianRepo) {
         this.studentRepo = studentRepo;
         this.userRepo = userRepo;
+        this.plumberRepo = plumberRepo;
+        this.electricianRepo = electricianRepo;
     }
 
     public static void main(String[] args) {
@@ -68,4 +74,12 @@ public class HibernateApplication {
         userRepo.save(docotorEntity);
     }
 
+    @PostConstruct
+    public void tablePerClassMappingStrategy(){
+        PlumberEntity plumber = new PlumberEntity("John", false, "5000", "ZYZ");
+        ElectricianEntity electrician = new ElectricianEntity("jack", true, "7000", "Main line connection");
+
+        plumberRepo.save(plumber);
+        electricianRepo.save(electrician);
+    }
 }
