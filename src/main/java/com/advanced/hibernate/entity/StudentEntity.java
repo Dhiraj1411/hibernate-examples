@@ -4,10 +4,8 @@ package com.advanced.hibernate.entity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
 import lombok.*;
 import lombok.experimental.Accessors;
-import org.hibernate.validator.constraints.UniqueElements;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -38,6 +36,10 @@ public class StudentEntity {
     @NotEmpty(message = "Email is required")
     @Column(name = "email")
     String email;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status")
+    private Status status;
 
     /*
         @ElementCollection: The Data for the collection stored in a separate table.
