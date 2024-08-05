@@ -1,8 +1,7 @@
-package com.advanced.hibernate.entity;
+package com.advanced.hibernate.entity.singleTablStrategy;
 
 import jakarta.persistence.*;
 import lombok.*;
-import lombok.experimental.Accessors;
 
 @Setter
 @Getter

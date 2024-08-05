@@ -1,4 +1,4 @@
-package com.advanced.hibernate.entity;
+package com.advanced.hibernate.entity.singleTablStrategy;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.DiscriminatorValue;
@@ -6,7 +6,7 @@ import jakarta.persistence.Entity;
 
 @Entity
 @DiscriminatorValue(value = "DOCTOR")
-public class DocotorEntity extends UserEntity{
+public class DocotorEntity extends UserEntity {
 
     @Column(name = "speciality")
     private String speciality;

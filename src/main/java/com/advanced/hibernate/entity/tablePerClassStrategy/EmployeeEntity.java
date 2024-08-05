@@ -1,4 +1,4 @@
-package com.advanced.hibernate.entity;
+package com.advanced.hibernate.entity.tablePerClassStrategy;
 
 import jakarta.persistence.*;
 import lombok.Getter;

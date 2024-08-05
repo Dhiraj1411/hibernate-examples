@@ -1,6 +1,6 @@
 package com.advanced.hibernate.repository;
 
-import com.advanced.hibernate.entity.ElectricianEntity;
+import com.advanced.hibernate.entity.tablePerClassStrategy.ElectricianEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
