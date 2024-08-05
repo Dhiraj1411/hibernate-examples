@@ -1,10 +1,7 @@
 package com.advanced.hibernate;
 
 import com.advanced.hibernate.entity.*;
-import com.advanced.hibernate.repository.ElectricianRepo;
-import com.advanced.hibernate.repository.PlumberRepo;
-import com.advanced.hibernate.repository.StudentRepo;
-import com.advanced.hibernate.repository.UserRepo;
+import com.advanced.hibernate.repository.*;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
@@ -19,13 +16,15 @@ public class HibernateApplication {
     UserRepo userRepo;
     PlumberRepo plumberRepo;
     ElectricianRepo electricianRepo;
+    EmployeeRepo employeeRepo;
 
     @Autowired
-    public HibernateApplication(StudentRepo studentRepo, UserRepo userRepo, PlumberRepo plumberRepo, ElectricianRepo electricianRepo) {
+    public HibernateApplication(StudentRepo studentRepo, UserRepo userRepo, PlumberRepo plumberRepo, ElectricianRepo electricianRepo, EmployeeRepo employeeRepo) {
         this.studentRepo = studentRepo;
         this.userRepo = userRepo;
         this.plumberRepo = plumberRepo;
         this.electricianRepo = electricianRepo;
+        this.employeeRepo = employeeRepo;
     }
 
     public static void main(String[] args) {
@@ -79,7 +78,7 @@ public class HibernateApplication {
         PlumberEntity plumber = new PlumberEntity("John", false, "5000", "ZYZ");
         ElectricianEntity electrician = new ElectricianEntity("jack", true, "7000", "Main line connection");
 
-        plumberRepo.save(plumber);
-        electricianRepo.save(electrician);
+        employeeRepo.save(plumber);
+        employeeRepo.save(electrician);
     }
 }
