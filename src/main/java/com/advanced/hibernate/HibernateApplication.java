@@ -1,6 +1,8 @@
 package com.advanced.hibernate;
 
 import com.advanced.hibernate.entity.*;
+import com.advanced.hibernate.entity.joinedTableStrategy.CarEntity;
+import com.advanced.hibernate.entity.joinedTableStrategy.MotorcycleEntity;
 import com.advanced.hibernate.repository.*;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,17 +16,15 @@ public class HibernateApplication {
 
     StudentRepo studentRepo;
     UserRepo userRepo;
-    PlumberRepo plumberRepo;
-    ElectricianRepo electricianRepo;
     EmployeeRepo employeeRepo;
+    VehicleRepo vehicleRepo;
 
     @Autowired
-    public HibernateApplication(StudentRepo studentRepo, UserRepo userRepo, PlumberRepo plumberRepo, ElectricianRepo electricianRepo, EmployeeRepo employeeRepo) {
+    public HibernateApplication(StudentRepo studentRepo, UserRepo userRepo, EmployeeRepo employeeRepo, VehicleRepo vehicleRepo) {
         this.studentRepo = studentRepo;
         this.userRepo = userRepo;
-        this.plumberRepo = plumberRepo;
-        this.electricianRepo = electricianRepo;
         this.employeeRepo = employeeRepo;
+        this.vehicleRepo = vehicleRepo;
     }
 
     public static void main(String[] args) {
@@ -80,5 +80,14 @@ public class HibernateApplication {
 
         employeeRepo.save(plumber);
         employeeRepo.save(electrician);
+    }
+
+    @PostConstruct
+    public void joinedTableMappingStrategy(){
+        CarEntity car = new CarEntity(2500L, "compact suv", 4);
+        MotorcycleEntity motorcycle = new MotorcycleEntity(1200L, "Cruise", 20000);
+
+        vehicleRepo.save(car);
+        vehicleRepo.save(motorcycle);
     }
 }
