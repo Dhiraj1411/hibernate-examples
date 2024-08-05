@@ -3,6 +3,9 @@ package com.advanced.hibernate;
 import com.advanced.hibernate.entity.*;
 import com.advanced.hibernate.entity.joinedTableStrategy.CarEntity;
 import com.advanced.hibernate.entity.joinedTableStrategy.MotorcycleEntity;
+import com.advanced.hibernate.entity.mappedSuperClassStrategy.CircleEntity;
+import com.advanced.hibernate.entity.mappedSuperClassStrategy.Shape;
+import com.advanced.hibernate.entity.mappedSuperClassStrategy.SquareEntity;
 import com.advanced.hibernate.entity.singleTablStrategy.DocotorEntity;
 import com.advanced.hibernate.entity.singleTablStrategy.EngineerEntity;
 import com.advanced.hibernate.entity.tablePerClassStrategy.ElectricianEntity;
@@ -22,13 +25,15 @@ public class HibernateApplication {
     UserRepo userRepo;
     EmployeeRepo employeeRepo;
     VehicleRepo vehicleRepo;
+    ShapeRepo shapeRepo;
 
     @Autowired
-    public HibernateApplication(StudentRepo studentRepo, UserRepo userRepo, EmployeeRepo employeeRepo, VehicleRepo vehicleRepo) {
+    public HibernateApplication(StudentRepo studentRepo, UserRepo userRepo, EmployeeRepo employeeRepo, VehicleRepo vehicleRepo, ShapeRepo shapeRepo) {
         this.studentRepo = studentRepo;
         this.userRepo = userRepo;
         this.employeeRepo = employeeRepo;
         this.vehicleRepo = vehicleRepo;
+        this.shapeRepo = shapeRepo;
     }
 
     public static void main(String[] args) {
@@ -93,5 +98,16 @@ public class HibernateApplication {
 
         vehicleRepo.save(car);
         vehicleRepo.save(motorcycle);
+    }
+
+    @PostConstruct
+    public void mappedSuperClass() {
+
+        CircleEntity circle = new CircleEntity("circle", 45L);
+        SquareEntity square = new SquareEntity("square", 23L);
+
+        shapeRepo.save(circle);
+        shapeRepo.save(square);
+
     }
 }
